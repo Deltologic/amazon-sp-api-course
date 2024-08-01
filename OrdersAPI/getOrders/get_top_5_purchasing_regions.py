@@ -24,7 +24,7 @@ orders = []
 try:
     orders_api = Orders(marketplace=Marketplaces.US, credentials=credentials)
     response = rate_limiter.send_request(orders_api.get_orders, OrderStatuses=[
-                                         'Shipped'], CreatedAfter='2024-05-31T23:59:59', CreatedBefore='2024-07-01T00:00:00', MarketplaceIds=['ATVPDKIKX0DER'])
+                                         'Shipped'], CreatedAfter='2024-05-31T23:59:59', CreatedBefore='2024-06-05T00:00:00', MarketplaceIds=['ATVPDKIKX0DER'])
     orders.extend(response.payload['Orders'])
     try:
         next_token = response.payload['NextToken']
@@ -32,7 +32,7 @@ try:
         next_token = None
     while next_token:
         response = rate_limiter.send_request(orders_api.get_orders, OrderStatuses=[
-                                             'Shipped'], CreatedAfter='2024-05-31T23:59:59', CreatedBefore='2024-07-01T00:00:00', MarketplaceIds=['ATVPDKIKX0DER'], NextToken=next_token)
+                                             'Shipped'], CreatedAfter='2024-05-31T23:59:59', CreatedBefore='2024-06-05T00:00:00', MarketplaceIds=['ATVPDKIKX0DER'], NextToken=next_token)
         orders.extend(response.payload['Orders'])
         try:
             next_token = response.payload['NextToken']
@@ -42,17 +42,15 @@ try:
 except Exception as e:
     print(e)
 
-print("Number of shipped orders: ")
-print(len(orders))
-
 print("Number of orders per postal code: ")
 postal_codes_count = Counter(
     order['ShippingAddress']['PostalCode']
     for order in orders
     if 'ShippingAddress' in order and 'PostalCode' in order['ShippingAddress']
 )
-top_5_postal_codes = postal_codes_count.most_common(5)
-print(top_5_postal_codes)
+top_5_postalCodes = postal_codes_count.most_common(5)
+print(top_5_postalCodes)
+
 print("Number of orders per state: ")
 states_count = Counter(order['ShippingAddress']['StateOrRegion'] for order in orders
                       if 'ShippingAddress' in order and 'StateOrRegion' in order['ShippingAddress'])

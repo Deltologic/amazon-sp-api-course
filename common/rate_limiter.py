@@ -1,6 +1,7 @@
 import time
 import threading
 from sp_api.base import SellingApiRequestThrottledException
+import datetime
 
 class RateLimiter:
     def __init__(self, tokens_per_second, capacity):
@@ -33,7 +34,10 @@ class RateLimiter:
     def send_request(self, action, *args, **kwargs):
         while not self.allow_request():
             time.sleep(1)
-        print("Request allowed", time.time())
+
+        current_timestamp = time.time()
+        current_datetime = datetime.datetime.fromtimestamp(current_timestamp).isoformat()
+        print(f"Request allowed: {current_datetime}")    
         try:
             response = action(*args, **kwargs)
         except SellingApiRequestThrottledException:
