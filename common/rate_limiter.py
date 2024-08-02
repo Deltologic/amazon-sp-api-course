@@ -7,6 +7,8 @@ class RateLimiter:
     def __init__(self, tokens_per_second, capacity):
         self.capacity = capacity
         self.tokens = capacity
+        if tokens_per_second <= 0:
+            raise Exception("tokens_per_second must be greater than 0")
         self.tokens_per_second = tokens_per_second
         self.lock = threading.Lock()
         self.last_refill_time = time.time()
