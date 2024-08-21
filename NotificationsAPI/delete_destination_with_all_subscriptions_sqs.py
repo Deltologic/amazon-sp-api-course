@@ -76,8 +76,7 @@ for sqs_notification_type in all_notification_types:
         pass
 
 for sqs_notification_type, subscription_id in subscriptions_to_delete:
-    print(f"Deleting subscription {
-          subscription_id} of type {sqs_notification_type}")
+    print(f"Deleting subscription {subscription_id} of type {sqs_notification_type}")
     rate_limiter.send_request(notifications_client.delete_notification_subscription,
                               notification_type=sqs_notification_type, subscription_id=subscription_id)
 
