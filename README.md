@@ -48,3 +48,11 @@ We have made an effort to demonstrate the handling of various endpoints on the b
 In ReportsAPI, scripts can be run either in ‘create report’ or ‘download report’ mode - depending on whether you specify a report identifier or leave it empty. In addition, in the ReportsAPI, you can set the report options to suit your needs (in the <input part>).
 
 In FeedsAPI, there are also two modes of running the script available - either to create the feed or to retrieve the result of the feed creation (to check whether the feed was created successfully). The Feeds API itself offers many possibilities, but currently there are two types of feeds available in the repository: POST_PRODUCT_PRICING_DATA (to update product’s price) and POST_INVENTORY_AVAILABILITY_DATA (to update product’s inventory).
+
+## Django Amazon OAuth App
+```bash
+# To run the app, you need to migrate the database and run the server
+./manage.py migrate
+./manage.py runserver
+
+```
