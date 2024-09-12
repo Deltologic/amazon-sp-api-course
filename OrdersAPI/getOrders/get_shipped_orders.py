@@ -24,7 +24,7 @@ orders = []
 try:
     orders_api = Orders(marketplace=Marketplaces.US, credentials=credentials)
     response = rate_limiter.send_request(orders_api.get_orders, OrderStatuses=[
-                                         'Shipped'], CreatedAfter='2024-05-31T23:59:59', CreatedBefore='2024-06-05T00:00:00', MarketplaceIds=['ATVPDKIKX0DER'])
+                                         'Shipped'], CreatedAfter='2024-05-31T23:59:59', CreatedBefore='2024-06-05T00:00:00', MarketplaceIds=[Marketplaces.US.marketplace_id])
     orders.extend(response.payload['Orders'])
     try:
         next_token = response.payload['NextToken']
@@ -32,7 +32,7 @@ try:
         next_token = None
     while next_token:
         response = rate_limiter.send_request(orders_api.get_orders, OrderStatuses=[
-                                             'Shipped'], CreatedAfter='2024-05-31T23:59:59', CreatedBefore='2024-06-05T00:00:00', MarketplaceIds=['ATVPDKIKX0DER'], NextToken=next_token)
+                                             'Shipped'], CreatedAfter='2024-05-31T23:59:59', CreatedBefore='2024-06-05T00:00:00', MarketplaceIds=[Marketplaces.US.marketplace_id], NextToken=next_token)
         orders.extend(response.payload['Orders'])
         try:
             next_token = response.payload['NextToken']

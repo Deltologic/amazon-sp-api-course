@@ -25,9 +25,9 @@ items_info = []
 
 try:
     catalog_api = CatalogItems(credentials=credentials,
-                              marketplace=Marketplaces.DE, version="2022-04-01")
-    response = catalog_api.search_catalog_items(marketplaceIds="A1PA6795UKMFR9", keywords=[
-                                               keywords_to_find], pageSize=page_size, includedData=['attributes'])
+                               marketplace=Marketplaces.DE, version="2022-04-01")
+    response = catalog_api.search_catalog_items(marketplaceIds=Marketplaces.DE.marketplace_id, keywords=[
+        keywords_to_find], pageSize=page_size, includedData=['attributes'])
     items_info.extend(response.payload['items'])
     pages_needed += 1
     try:
@@ -35,8 +35,10 @@ try:
     except:
         next_token = None
     while next_token:
-        response = rate_limiter.send_request(catalog_api.search_catalog_items, marketplaceIds="A1PA6795UKMFR9", keywords=[
-                                             keywords_to_find], pageSize=page_size, pageToken=next_token, includedData=['attributes'])
+        response = rate_limiter.send_request(catalog_api.search_catalog_items, marketplaceIds="A1PA6795UKMFR9",
+                                             keywords=[
+                                                 keywords_to_find], pageSize=page_size, pageToken=next_token,
+                                             includedData=['attributes'])
         items_info.extend(response.payload['items'])
         pages_needed += 1
         try:

@@ -5,8 +5,7 @@ from sp_api.base import Marketplaces
 
 from common.report_types import ReportType
 from common.processing_statuses import ProcessingStatus
-from reports_common.report_model import GetReportByIdModel
-
+from ReportsAPI.reports_common.report_model import GetReportByIdModel
 
 # <input part> ==========================================================================================================
 """
@@ -33,12 +32,11 @@ date_granularity = "DAY"
 """
 asin_granularity = "CHILD"
 
-# in this example, we are using the FR marketplace
-marketplace_id = "A13V1IB3VIYZZH"
+marketplace_id = Marketplaces.US.marketplace_id
 
 # set the report_id to None if you want to create a new report
 # if you want to download created report, then set the report_id to the id of the report
-report_id = None
+report_id = ''
 
 # </input part> ==========================================================================================================
 
@@ -56,7 +54,7 @@ credentials = dict(
     lwa_client_secret=lwa_client_secret
 )
 reports_api_client = Reports(credentials=credentials,
-                             marketplace=Marketplaces.FR)
+                             marketplace=Marketplaces.US)
 
 if report_id == None:
     try:
@@ -82,8 +80,7 @@ if report_id == None:
 
 else:
     # the request below should be taken after a while (5-10 minutes) to be sure that the report is ready
-    report_file_path = f'./reports-downloaded/start-{data_start_time}-end-{data_end_time}-id-{
-        report_id}-asin_gran-{asin_granularity}-date_gran-{date_granularity}.json'
+    report_file_path = f'./reports-downloaded/start-{data_start_time}-end-{data_end_time}-id-{report_id}-asin_gran-{asin_granularity}-date_gran-{date_granularity}.json'
 
     os.makedirs(os.path.dirname(report_file_path), exist_ok=True)
 

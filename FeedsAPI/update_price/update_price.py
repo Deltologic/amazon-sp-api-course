@@ -4,7 +4,7 @@ import os
 from sp_api.base import Marketplaces
 from sp_api.api import Feeds
 from create_xml import ProductToReprice, create_xml
-from feeds_common.feed_types import FeedType
+from FeedsAPI.feeds_common.feed_types import FeedType
 
 load_dotenv()
 
@@ -18,14 +18,12 @@ credentials = dict(
     lwa_client_secret=lwa_client_secret
 )
 
-feeds_api_client = Feeds(credentials=credentials, marketplace=Marketplaces.PL)
+feeds_api_client = Feeds(credentials=credentials, marketplace=Marketplaces.MX)
 seller_id = os.getenv('seller_id')
 feed_type = FeedType.POST_PRODUCT_PRICING_DATA.value
 
-
 # <input part> ==========================================================================================================
-products_to_reprice = [ProductToReprice(
-    'SKU1', '150.00', 'PLN'), ProductToReprice('SKU2', '140.00', 'PLN')]
+products_to_reprice = [ProductToReprice('SKU1', '150.00', 'PLN'), ProductToReprice('SKU2', '140.00', 'PLN')]
 
 """
 -> In order to create feed, set feed_id to empty string.
@@ -52,12 +50,13 @@ if feed_id == "":
 
     feed_id = create_feed_response['feedId']
     print(feed_id)
+    print('Feed created successfully')
 
 else:
     info = feeds_api_client.get_feed(feedId=feed_id)
 
     processing_status = info.payload.get('processingStatus')
-
+    print(f'Processing status {processing_status}')
     if processing_status != None:
         result_feed_document_id = info.payload.get('resultFeedDocumentId')
 
@@ -69,6 +68,6 @@ else:
 
             current_dir = os.getcwd()
             result_file_path = os.path.join(
-                current_dir, 'Feeds API', 'update_price', f'feed-result-{feed_id}.xml')
+                current_dir, 'FeedsAPI', 'update_price', f'feed-result-{feed_id}.xml')
             with open(result_file_path, 'w', encoding='utf-8') as file:
                 file.write(feed_document)

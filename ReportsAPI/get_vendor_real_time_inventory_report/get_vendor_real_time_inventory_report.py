@@ -6,9 +6,9 @@ from sp_api.base import Marketplaces
 
 from common.report_types import ReportType
 from common.processing_statuses import ProcessingStatus
-from reports_common.report_model import GetReportByIdModel
-from reports_common.prepare_dates import prepare_dates
-from analyze_reports import get_list_of_lowest_availabilites, get_list_of_lowest_availabilities_from_arrays, get_most_frequent_time_period_when_stock_is_low
+from ReportsAPI.reports_common.report_model import GetReportByIdModel
+from ReportsAPI.reports_common.prepare_dates import prepare_dates
+from ReportsAPI.get_vendor_real_time_inventory_report.analyze_reports import get_list_of_lowest_availabilites, get_list_of_lowest_availabilities_from_arrays, get_most_frequent_time_period_when_stock_is_low
 
 
 # <input part> ==========================================================================================================
@@ -66,8 +66,7 @@ else:
             report_by_id_response = GetReportByIdModel(response.payload)
 
             if report_by_id_response.processing_status == ProcessingStatus.DONE.value and report_by_id_response.report_document_id != None:
-                report_file_path = f'./reports-downloaded/start-{report_by_id_response.data_start_time}-end-{report_by_id_response.data_end_time}-id-{
-                    report_id}.json'
+                report_file_path = f'./reports-downloaded/start-{report_by_id_response.data_start_time}-end-{report_by_id_response.data_end_time}-id-{report_id}.json'
 
                 os.makedirs(os.path.dirname(report_file_path), exist_ok=True)
 

@@ -8,12 +8,10 @@ class TimePeriodWithAsin:
     def __init__(self, asin: str, glance_views: int, start_time: str, end_time: str):
         self.asin = asin
         self.glance_views = glance_views
-        self.time_period = f'{start_time.split(
-            'T')[1]}-{end_time.split('T')[1]}'
+        self.time_period = f"{start_time.split('T')[1]}-{end_time.split('T')[1]}"
 
     def time_period_is_equal(self, start_time: str, end_time: str):
-        other_time_period = f'{start_time.split(
-            'T')[1]}-{end_time.split('T')[1]}'
+        other_time_period = f"{start_time.split('T')[1]}-{end_time.split('T')[1]}"
         return self.time_period == other_time_period
 
 

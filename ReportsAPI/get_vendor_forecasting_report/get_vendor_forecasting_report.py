@@ -7,7 +7,7 @@ from sp_api.base import Marketplaces
 
 from common.report_types import ReportType
 from common.processing_statuses import ProcessingStatus
-from reports_common.report_model import GetReportByIdModel
+from ReportsAPI.reports_common.report_model import GetReportByIdModel
 
 
 # <input part> ==========================================================================================================
@@ -66,8 +66,7 @@ if report_id == None:
 
 else:
     # the request below should be taken after a while (5-10 minutes) to be sure that the report is ready
-    report_file_path = f'./reports-downloaded/report-request-time-{report_request_time}-id-{
-        report_id}.json'
+    report_file_path = f'./reports-downloaded/report-request-time-{report_request_time}-id-{report_id}.json'
 
     os.makedirs(os.path.dirname(report_file_path), exist_ok=True)
 

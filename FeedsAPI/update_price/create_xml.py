@@ -13,17 +13,17 @@ feed_base_content = """<?xml version = "1.0" encoding = "utf-8"?>
   </Header>
   <MessageType>Price</MessageType>
   {{products_to_reprice}}
-</AmazonEnvelope >
+</AmazonEnvelope>
 """
 
 
 def create_xml_product_to_reprice(id: str, price_feed: ProductToReprice):
     return f"""
-<Message>
+    <Message>
       <MessageID>{id}</MessageID>
       <OperationType>Update</OperationType>
       <Price>
-        <SKU>${price_feed.sku}</SKU>
+        <SKU>{price_feed.sku}</SKU>
         <StandardPrice currency="{price_feed.currency}">{float(price_feed.price):.2f}</StandardPrice>
       </Price>
     </Message>"""

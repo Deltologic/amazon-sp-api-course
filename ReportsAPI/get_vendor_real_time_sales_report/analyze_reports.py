@@ -9,8 +9,7 @@ class TimePeriodWithQuantityAndRevenue:
         self.ordered_products_units = ordered_units
         self.ordered_revenue = ordered_revenue
         
-        self.time_period = f'{start_time.split(
-            'T')[1]}-{end_time.split('T')[1]}'
+        self.time_period = f"{start_time.split('T')[1]}-{end_time.split('T')[1]}"
 
     def set_avg_sales(self):
         if(self.ordered_products_units == 0):
@@ -19,8 +18,7 @@ class TimePeriodWithQuantityAndRevenue:
             self.average_sales = self.ordered_revenue / self.ordered_products_units
     
     def time_period_is_equal(self, start_time: str, end_time: str):
-        other_time_period = f'{start_time.split(
-            'T')[1]}-{end_time.split('T')[1]}'
+        other_time_period = f"{start_time.split('T')[1]}-{end_time.split('T')[1]}"
         return self.time_period == other_time_period
 
 
