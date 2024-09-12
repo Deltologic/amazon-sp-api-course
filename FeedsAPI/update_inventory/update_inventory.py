@@ -4,7 +4,7 @@ import os
 from sp_api.base import Marketplaces
 from sp_api.api import Feeds
 from create_xml import ProductInventoryChange, create_xml
-from feeds_common.feed_types import FeedType
+from FeedsAPI.feeds_common.feed_types import FeedType
 
 load_dotenv()
 
@@ -21,7 +21,6 @@ credentials = dict(
 feeds_api_client = Feeds(credentials=credentials, marketplace=Marketplaces.PL)
 seller_id = os.getenv('seller_id')
 feed_type = FeedType.POST_INVENTORY_AVAILABILITY_DATA.value
-
 
 # <input part> ==========================================================================================================
 products_to_reprice = [ProductInventoryChange(
@@ -69,6 +68,6 @@ else:
 
             current_dir = os.getcwd()
             result_file_path = os.path.join(
-                current_dir, 'Feeds API', 'update_price', f'feed-result-{feed_id}.xml')
+                current_dir, 'FeedsAPI', 'update_price', f'feed-result-{feed_id}.xml')
             with open(result_file_path, 'w', encoding='utf-8') as file:
                 file.write(feed_document)

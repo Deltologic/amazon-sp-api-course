@@ -24,7 +24,6 @@ def weight_to_grams(weight_info):
 
 rate_limiter = RateLimiter(tokens_per_second=5, capacity=5)
 
-
 load_dotenv()
 
 refresh_token = os.getenv('refresh_token')
@@ -44,9 +43,9 @@ product_weight_with_units = []
 
 try:
     catalog_api = CatalogItems(credentials=credentials,
-                              marketplace=Marketplaces.DE, version="2022-04-01")
-    response = catalog_api.search_catalog_items(marketplaceIds="A1PA6795UKMFR9", keywords=[
-                                               keywords_to_find], pageSize=20, includedData=['attributes'])
+                               marketplace=Marketplaces.DE, version="2022-04-01")
+    response = catalog_api.search_catalog_items(marketplaceIds=Marketplaces.DE.marketplace_id, keywords=[
+        keywords_to_find], pageSize=20, includedData=['attributes'])
 
     try:
         next_token = response.pagination['nextToken']
@@ -64,8 +63,9 @@ try:
         product_weight_with_units.append(weight)
 
     while next_token:
-        response = rate_limiter.send_request(catalog_api.search_catalog_items, marketplaceIds="A1PA6795UKMFR9", keywords=[
-                                             keywords_to_find], pageSize=20, pageToken=next_token, includedData=['attributes'])
+        response = rate_limiter.send_request(catalog_api.search_catalog_items,
+                                             marketplaceIds=Marketplaces.DE.marketplace_id, keywords=[
+                keywords_to_find], pageSize=20, pageToken=next_token, includedData=['attributes'])
         for item in response.payload['items']:
             try:
                 weight = item['attributes']['item_weight']

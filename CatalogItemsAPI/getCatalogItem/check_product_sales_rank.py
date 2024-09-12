@@ -27,7 +27,6 @@ credentials = dict(
 )
 rate_limiter = RateLimiter(tokens_per_second=5, capacity=5)
 
-
 # product url: https://www.amazon.com/dp/B07RFSSYBH
 # product: "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones" book
 asin = 'B07RFSSYBH'
@@ -36,7 +35,7 @@ sales_ranks = []
 
 try:
     catalog_api = CatalogItems(credentials=credentials,
-                              marketplace=Marketplaces.US, version="2022-04-01")
+                               marketplace=Marketplaces.US, version="2022-04-01")
     response = rate_limiter.send_request(catalog_api.get_catalog_item, marketplaceIds="ATVPDKIKX0DER",
                                          asin=asin, pageSize=page_size, includedData=['summaries,salesRanks'])
     ranks = response.payload['salesRanks'][0]['classificationRanks']

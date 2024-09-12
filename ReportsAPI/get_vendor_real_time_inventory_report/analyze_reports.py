@@ -49,8 +49,7 @@ def get_list_of_lowest_availabilities_from_arrays(arrays: List[List[AsinWithAvai
 def get_most_frequent_time_period_when_stock_is_low(lowest_stock_asins: List[AsinWithAvailability]):
     time_periods = {}
     for asin in lowest_stock_asins:
-        time_period = f'{asin.start_time.split(
-            'T')[1]}-{asin.end_time.split('T')[1]}'
+        time_period = f"{asin.start_time.split('T')[1]}-{asin.end_time.split('T')[1]}"
         if time_period in time_periods:
             time_periods[time_period] += 1
         else:

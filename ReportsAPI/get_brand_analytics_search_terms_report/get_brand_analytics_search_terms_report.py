@@ -6,7 +6,7 @@ from sp_api.base import Marketplaces
 
 from common.report_types import ReportType
 from common.processing_statuses import ProcessingStatus
-from reports_common.report_model import GetReportByIdModel
+from ReportsAPI.reports_common.report_model import GetReportByIdModel
 
 
 # <input part> ==========================================================================================================
@@ -29,7 +29,7 @@ data_end_time = "2024-07-13T00:00:00Z"
 report_period = "WEEK"
 
 # in this example, we are using the FR marketplace
-marketplace_id = "A13V1IB3VIYZZH"
+marketplace_id = Marketplaces.FR.marketplace_id
 
 # set the report_id to None if you want to create a new report
 # if you want to download created report, then set the report_id to the id of the report
@@ -76,8 +76,7 @@ if report_id == None:
 
 else:
     # the request below should be taken after a while (5-10 minutes) to be sure that the report is ready
-    report_file_path = f'./reports-downloaded/start-{data_start_time}-end-{data_end_time}-id-{
-        report_id}-date_gran-{report_period}.json'
+    report_file_path = f'./reports-downloaded/start-{data_start_time}-end-{data_end_time}-id-{report_id}-date_gran-{report_period}.json'
 
     os.makedirs(os.path.dirname(report_file_path), exist_ok=True)
 

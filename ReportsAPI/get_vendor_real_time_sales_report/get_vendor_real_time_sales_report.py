@@ -6,8 +6,8 @@ from sp_api.base import Marketplaces
 
 from common.report_types import ReportType
 from common.processing_statuses import ProcessingStatus
-from reports_common.report_model import GetReportByIdModel
-from reports_common.prepare_dates import parse_time_period, prepare_dates
+from ReportsAPI.reports_common.report_model import GetReportByIdModel
+from ReportsAPI.reports_common.prepare_dates import parse_time_period, prepare_dates
 from analyze_reports import get_time_periods_with_quantities_and_revenues, merge_same_time_periods_data
 
 
@@ -66,8 +66,7 @@ else:
             report_by_id_response = GetReportByIdModel(response.payload)
 
             if report_by_id_response.processing_status == ProcessingStatus.DONE.value and report_by_id_response.report_document_id != None:
-                report_file_path = f'./reports-downloaded/start-{report_by_id_response.data_start_time}-end-{report_by_id_response.data_end_time}-id-{
-                    report_id}.json'
+                report_file_path = f'./reports-downloaded/start-{report_by_id_response.data_start_time}-end-{report_by_id_response.data_end_time}-id-{report_id}.json'
 
                 os.makedirs(os.path.dirname(report_file_path), exist_ok=True)
 
