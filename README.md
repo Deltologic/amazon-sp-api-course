@@ -2,7 +2,7 @@
 <div align="center">
 
 <p align="center">
-  <img src="https://i.imgur.com/B3XGjzQ.png" alt="Deltologic Logo" width="150"/>
+  <img src="https://i.imgur.com/B3XGjzQ.png" alt="Deltologic Logo" width="150" />
 </p>
 
 # Amazon SP-API Course
