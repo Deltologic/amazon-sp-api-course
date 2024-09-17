@@ -1,12 +1,13 @@
 
 <div align="center">
 
-![Deltologic Logo](https://i.imgur.com/lReGzMH_d.webp)
+<p align="center">
+  <img src="https://i.imgur.com/B3XGjzQ.png" alt="Deltologic Logo" width="150" />
+</p>
 
 # Amazon SP-API Course
 
 [![Python Version][python_version_img]][python_url]
-[![License][license_img]][license_url]
 [![Website][website_img]][company_url]
 [![Course][course_img]][course_url]
 
@@ -117,13 +118,7 @@ If you find this project helpful, please consider:
 
 ---
 
-## ⚠️ License
-
-This project is licensed under the [MIT License][license_url].
-
----
-
-[logo_img]: https://imgur.com/a/ft47c2N
+[logo_img]: https://i.imgur.com/B3XGjzQ.png
 [company_url]: https://www.deltologic.com/
 [course_url]: https://courses.deltologic.com/
 [python_version_img]: https://img.shields.io/badge/python-3.x-blue
