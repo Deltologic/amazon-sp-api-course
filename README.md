@@ -129,7 +129,7 @@ If you find this project helpful, please consider:
 [course_img]: https://img.shields.io/badge/course-Amazon%20SP--API%20Course-orange
 [amazon_sp_api_url]: https://developer-docs.amazon.com/sp-api/
 [youtube_preview_img]: https://img.youtube.com/vi/zpUsBHuH0G8/0.jpg
-[youtube_url]: https://youtu.be/zpUsBHuH0G8
+[youtube_url]: https://youtu.be/QwuptVfLWfI?si=Qs9r4EP_T__hIb4v
 [issues_url]: https://github.com/Deltologic/amazon-sp-api-course/issues
 [pulls_url]: https://github.com/Deltologic/amazon-sp-api-course/pulls
 [repository_url]: https://github.com/Deltologic/amazon-sp-api-course
